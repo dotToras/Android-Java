@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(MainActivity.this, SistemasOperacionaisActivity.class);
                 startActivity(i);
-                finish();
+
 
             }
         });
@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(MainActivity.this, JavaActivity.class);
                 startActivity(i);
-                finish();
+
 
             }
         });
@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(MainActivity.this, SqlActivity.class);
                 startActivity(i);
-                finish();
+
 
             }
         });

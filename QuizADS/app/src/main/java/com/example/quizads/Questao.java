@@ -6,19 +6,39 @@ import java.util.List;
 
 public class Questao {
 
-    String questao;
-    List<String> perguntas = new ArrayList<>();
-    String respostaCerta;
+    private String questao;
+    private List<String> perguntas;
+    private String respostaCerta;
 
-    public Questao(String questao, String respostaCerta, String ... perguntas) {
+    public Questao(String questao, List<String> perguntas, String respostaCerta) {
         this.questao = questao;
+        this.perguntas = perguntas;
         this.respostaCerta = respostaCerta;
-        // assim que chamar o construtor já popular as perguntas
-        this.perguntas.add(perguntas[0]);
-        this.perguntas.add(perguntas[1]);
-        this.perguntas.add(perguntas[2]);
-        this.perguntas.add(perguntas[3]);
     }
 
 
+
+    public String getQuestao() {
+        return questao;
+    }
+
+    public void setQuestao(String questao) {
+        this.questao = questao;
+    }
+
+    public List<String> getPerguntas() {
+        return perguntas;
+    }
+
+    public void setPerguntas(List<String> perguntas) {
+        this.perguntas = perguntas;
+    }
+
+    public String getRespostaCerta() {
+        return respostaCerta;
+    }
+
+    public void setRespostaCerta(String respostaCerta) {
+        this.respostaCerta = respostaCerta;
+    }
 }
