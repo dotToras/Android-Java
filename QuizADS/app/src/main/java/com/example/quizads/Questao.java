@@ -6,6 +6,8 @@ import java.util.List;
 
 public class Questao {
 
+    public static int prova = 0;
+
     private String questao;
     private List<String> perguntas;
     private String respostaCerta;

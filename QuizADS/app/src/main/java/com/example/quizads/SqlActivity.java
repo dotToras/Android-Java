@@ -26,7 +26,7 @@ public class SqlActivity extends AppCompatActivity {
     LinearLayout containerQuiz;
     Button btEnviar;
     List<Questao> listaQuestoes = new ArrayList<>();
-
+    int numb;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -35,7 +35,10 @@ public class SqlActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_sql);
 
-        preencherQuestoes();
+
+        if( Global.prova == 1) {
+            preencherQuestoesSQL();
+        }
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -47,7 +50,6 @@ public class SqlActivity extends AppCompatActivity {
         containerQuiz = findViewById(R.id.layout01);
 
 
-        ScrollView sv = new ScrollView(this);
 
 
         TextView tv = new TextView(this);
@@ -78,7 +80,31 @@ public class SqlActivity extends AppCompatActivity {
 }
 
 
-    public void preencherQuestoes() {
+    public void preencherQuestoesSQL() {
+
+        listaQuestoes.add(new Questao("Qual é o SGBD Mais  popular do mundo?", Arrays.asList("Oracle", "PostgreSQL", "MYSQL", "SQL SERVER"), "Oracle" ));
+        listaQuestoes.add(new Questao("teste?", Arrays.asList("te", "testse", "fd", "fds"), "Oracle" ));
+        listaQuestoes.add(new Questao("Qual é o SGBD Mais  popular do mundo?", Arrays.asList("Oracle", "PostgreSQL", "MYSQL", "SQL SERVER"), "Oracle" ));
+        listaQuestoes.add(new Questao("teste?", Arrays.asList("te", "testse", "fd", "fds"), "Oracle" ));
+        listaQuestoes.add(new Questao("Qual é o SGBD Mais  popular do mundo?", Arrays.asList("Oracle", "PostgreSQL", "MYSQL", "SQL SERVER"), "Oracle" ));
+        listaQuestoes.add(new Questao("teste?", Arrays.asList("te", "testse", "fd", "fds"), "Oracle" ));
+        listaQuestoes.add(new Questao("Qual é o SGBD Mais  popular do mundo?", Arrays.asList("Oracle", "PostgreSQL", "MYSQL", "SQL SERVER"), "Oracle" ));
+        listaQuestoes.add(new Questao("teste?", Arrays.asList("te", "testse", "fd", "fds"), "Oracle" ));
+    }
+
+    public void preencherQuestoesJava() {
+
+        listaQuestoes.add(new Questao("Qual é o SGBD Mais  popular do mundo?", Arrays.asList("Oracle", "PostgreSQL", "MYSQL", "SQL SERVER"), "Oracle" ));
+        listaQuestoes.add(new Questao("teste?", Arrays.asList("te", "testse", "fd", "fds"), "Oracle" ));
+        listaQuestoes.add(new Questao("Qual é o SGBD Mais  popular do mundo?", Arrays.asList("Oracle", "PostgreSQL", "MYSQL", "SQL SERVER"), "Oracle" ));
+        listaQuestoes.add(new Questao("teste?", Arrays.asList("te", "testse", "fd", "fds"), "Oracle" ));
+        listaQuestoes.add(new Questao("Qual é o SGBD Mais  popular do mundo?", Arrays.asList("Oracle", "PostgreSQL", "MYSQL", "SQL SERVER"), "Oracle" ));
+        listaQuestoes.add(new Questao("teste?", Arrays.asList("te", "testse", "fd", "fds"), "Oracle" ));
+        listaQuestoes.add(new Questao("Qual é o SGBD Mais  popular do mundo?", Arrays.asList("Oracle", "PostgreSQL", "MYSQL", "SQL SERVER"), "Oracle" ));
+        listaQuestoes.add(new Questao("teste?", Arrays.asList("te", "testse", "fd", "fds"), "Oracle" ));
+    }
+
+    public void preencherQuestoesSO() {
 
         listaQuestoes.add(new Questao("Qual é o SGBD Mais  popular do mundo?", Arrays.asList("Oracle", "PostgreSQL", "MYSQL", "SQL SERVER"), "Oracle" ));
         listaQuestoes.add(new Questao("teste?", Arrays.asList("te", "testse", "fd", "fds"), "Oracle" ));

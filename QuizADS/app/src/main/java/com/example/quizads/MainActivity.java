@@ -33,9 +33,12 @@ public class MainActivity extends AppCompatActivity {
         btSO.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                Global.prova = 1;
+
                 Intent i = new Intent(MainActivity.this, SistemasOperacionaisActivity.class);
                 startActivity(i);
-
+                finish();
 
             }
         });
@@ -43,9 +46,10 @@ public class MainActivity extends AppCompatActivity {
         btJava.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Global.prova = 1;
                 Intent i = new Intent(MainActivity.this, JavaActivity.class);
                 startActivity(i);
-
+                finishAndRemoveTask();
 
             }
         });
@@ -53,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
         btSql.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Global.prova = 1;
                 Intent i = new Intent(MainActivity.this, SqlActivity.class);
                 startActivity(i);
 
