@@ -9,10 +9,78 @@
 
     <TextView
         android:id="@+id/textView4"
-        android:layout_width="93dp"
-        android:layout_height="33dp"
+        android:layout_width="181dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="24dp"
         android:fontFamily="@font/arimo_bold"
         android:text="Candidatos"
-        tools:layout_editor_absoluteX="106dp"
-        tools:layout_editor_absoluteY="42dp" />
+        android:textAlignment="center"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:layout_width="407dp"
+        android:layout_height="61dp"
+        android:orientation="horizontal"
+        tools:layout_editor_absoluteX="5dp"
+        tools:layout_editor_absoluteY="91dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            tools:layout_editor_absoluteX="5dp"
+            tools:layout_editor_absoluteY="91dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                tools:layout_editor_absoluteX="5dp"
+                tools:layout_editor_absoluteY="91dp">
+
+                <ImageView
+                    android:id="@+id/imageView14"
+                    android:layout_width="86dp"
+                    android:layout_height="match_parent"
+                    app:srcCompat="@drawable/icons8_nome_96" />
+
+                <LinearLayout
+                    android:layout_width="133dp"
+                    android:layout_height="45dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textView12"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/arimo_bold"
+                        android:text="João Silva"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/textView17"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/arimo_bold"
+                        android:text="JSON"
+                        android:textColor="#957E04"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            tools:layout_editor_absoluteX="5dp"
+            tools:layout_editor_absoluteY="91dp"/>
+
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
