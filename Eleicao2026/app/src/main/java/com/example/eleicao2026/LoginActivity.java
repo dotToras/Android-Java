@@ -13,10 +13,9 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+
 public class LoginActivity extends AppCompatActivity {
 
-    String usuario = "Mario";
-    String senha = "23#32";
     EditText edUsuario, edSenha;
     Button btEntrar;
 

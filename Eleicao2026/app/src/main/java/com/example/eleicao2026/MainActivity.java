@@ -1,6 +1,9 @@
 package com.example.eleicao2026;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,6 +12,8 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
+
+    Button btPesEst, btPesEsp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,6 +24,29 @@ public class MainActivity extends AppCompatActivity {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
+
+
+        });
+
+        btPesEst = findViewById(R.id.btPesEst);
+        btPesEsp = findViewById(R.id.btPesEsp);
+
+        btPesEst.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, CandidatosActivity.class);
+                startActivity(i);
+
+            }
+        });
+
+        btPesEsp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, PesquisaEspontaneaActivity.class);
+                startActivity(i);
+
+            }
         });
     }
 }
