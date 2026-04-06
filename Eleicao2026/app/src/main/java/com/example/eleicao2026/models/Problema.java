@@ -9,9 +9,24 @@ public class Problema {
 
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "pro_codigo")
-    public int codigo;
+    private int codigo;
 
     @ColumnInfo(name = "pro_nome")
-    public String nome;
+    private String nome;
 
+    public int getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 }

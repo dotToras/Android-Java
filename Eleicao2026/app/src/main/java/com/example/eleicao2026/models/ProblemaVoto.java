@@ -24,13 +24,29 @@ import androidx.room.ForeignKey;
 public class ProblemaVoto {
 
     @ColumnInfo(name = "pro_codigo")
-    public int problemaCodigo;
+    private int problemaCodigo;
 
     @ColumnInfo(name = "vot_codigo")
-    public int votoCodigo;
+    private int votoCodigo;
 
     public ProblemaVoto(int problemaCodigo, int votoCodigo) {
         this.problemaCodigo = problemaCodigo;
+        this.votoCodigo = votoCodigo;
+    }
+
+    public int getProblemaCodigo() {
+        return problemaCodigo;
+    }
+
+    public void setProblemaCodigo(int problemaCodigo) {
+        this.problemaCodigo = problemaCodigo;
+    }
+
+    public int getVotoCodigo() {
+        return votoCodigo;
+    }
+
+    public void setVotoCodigo(int votoCodigo) {
         this.votoCodigo = votoCodigo;
     }
 }

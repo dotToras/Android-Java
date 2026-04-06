@@ -9,14 +9,46 @@ public class Entrevistado {
 
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "ent_codigo")
-    public int codigo;
+    private int codigo;
 
     @ColumnInfo(name = "ent_nome")
-    public String nome;
+    private String nome;
 
     @ColumnInfo(name = "ent_celular")
-    public String celular;
+    private String celular;
 
     @ColumnInfo(name = "ent_dataHora")
-    public Long dataHora;
+    private Long dataHora;
+
+    public int getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getCelular() {
+        return celular;
+    }
+
+    public void setCelular(String celular) {
+        this.celular = celular;
+    }
+
+    public Long getDataHora() {
+        return dataHora;
+    }
+
+    public void setDataHora(Long dataHora) {
+        this.dataHora = dataHora;
+    }
 }

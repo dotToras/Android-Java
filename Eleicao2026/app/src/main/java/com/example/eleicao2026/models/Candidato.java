@@ -9,10 +9,33 @@ public class Candidato {
 
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "can_codigo")
-    public int codigo;
+    private int codigo;
     @ColumnInfo(name = "can_nome")
-    public String nome;
+    private String nome;
     @ColumnInfo(name = "can_fotoUrl")
-    public String fotoUrl;
+    private String fotoUrl;
 
+    public int getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getFotoUrl() {
+        return fotoUrl;
+    }
+
+    public void setFotoUrl(String fotoUrl) {
+        this.fotoUrl = fotoUrl;
+    }
 }

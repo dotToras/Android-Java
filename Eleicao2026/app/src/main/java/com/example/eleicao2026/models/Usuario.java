@@ -9,7 +9,7 @@ public class Usuario {
 
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "usu_codigo")
-    public int codigo;
+    private int codigo;
 
     @ColumnInfo(name = "usu_nome")
     public String nome;
