@@ -16,4 +16,7 @@ public interface UsuarioDAO {
     @Insert
     void criar(Usuario usuario);
 
+    @Query("Select COUNT(*) from Usuario")
+    int buscarTotalUsuarios();
+
 }

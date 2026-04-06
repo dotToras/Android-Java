@@ -37,8 +37,6 @@ public abstract class AppDatabase extends RoomDatabase {
     // evitando uso excessivo de memória
 
 
-    private AppDatabase() {}
-
     public static AppDatabase getINSTANCE(final Context context) {
 
         synchronized (AppDatabase.class) {
