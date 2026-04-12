@@ -128,6 +128,7 @@ public class DadosEntrevistadoActivity extends AppCompatActivity {
                     // bota a latitude e longitude em variaveis
                     latitude = localizacao.getLatitude();
                     longitude = localizacao.getLongitude();
+
                 }
                 else {
                    Toast t = Toast.makeText(DadosEntrevistadoActivity.this, "Ligue o GPS para salvar seus dados", Toast.LENGTH_SHORT);
@@ -147,7 +148,7 @@ public class DadosEntrevistadoActivity extends AppCompatActivity {
     }
 }
 
-// documentação usada para a localizacao:
+// documentação usada para a localizacao (já no passo-a-passo que fiz):
 // Aidicionar no Manifest: https://developer.android.com/develop/sensors-and-location/location/permissions?hl=pt-br
 // Fused Location Provider e pegar a última localização: https://developer.android.com/develop/sensors-and-location/location/retrieve-current?hl=pt-br
 // Dependencia: https://developers.google.com/android/guides/setup?hl=pt-br&device=phone-tablet

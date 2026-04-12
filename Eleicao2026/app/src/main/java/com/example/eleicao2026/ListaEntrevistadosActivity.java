@@ -1,53 +1,53 @@
 package com.example.eleicao2026;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.eleicao2026.database.AppDatabase;
+import com.example.eleicao2026.models.Entrevistado;
 
-public class ResultadoPesquisaActivity extends AppCompatActivity {
+import java.util.List;
 
-    TextView tvQtdEntr;
-    Button btResultadoPes;
+public class ListaEntrevistadosActivity extends AppCompatActivity {
+
+    RecyclerView rv;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_resultado_pesquisa);
+        setContentView(R.layout.activity_lista_entrevistados);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
 
-        tvQtdEntr = findViewById(R.id.tvQtdEntr);
+        rv = findViewById(R.id.rvEntrevistados);
         AppDatabase db = AppDatabase.getINSTANCE(this);
-        btResultadoPes = findViewById(R.id.btResultadoPes);
+        // Define como a lista aparece, no caso escolhi um embaixo do outro
+        rv.setLayoutManager(new LinearLayoutManager(this));
 
-        new Thread(() ->{
-            int qtdEntrevistados = db.entrevistadoDAO().totalEntrevistados();
+        new Thread(()->{
+
+           List<Entrevistado> listaEntrevistadosDb = db.entrevistadoDAO().buscarTodos();
+
+           // atualizando a tela
             runOnUiThread(()->{
-                tvQtdEntr.setText(String.valueOf(qtdEntrevistados));
+                EntrevistadoAdapter adapter = new EntrevistadoAdapter(listaEntrevistadosDb);
+                rv.setAdapter(adapter);
             });
+
+
         }).start();
 
-        btResultadoPes.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(ResultadoPesquisaActivity.this, ListaEntrevistadosActivity.class);
-                startActivity(i);
-                finish();
-            }
-        });
     }
 }
