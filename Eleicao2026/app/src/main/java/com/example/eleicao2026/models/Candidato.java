@@ -10,10 +10,19 @@ public class Candidato {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "can_codigo")
     private int codigo;
+
     @ColumnInfo(name = "can_nome")
     private String nome;
+
+    @ColumnInfo(name = "can_partido")
+    private String partido;
+
     @ColumnInfo(name = "can_fotoUrl")
-    private String fotoUrl;
+    private String fotoUrl; // null para BRANCO, NULO e NAO_SEI
+
+    // "CANDIDATO", "BRANCO", "NULO", "NAO_SEI"
+    @ColumnInfo(name = "can_tipo")
+    private String tipo;
 
     public int getCodigo() {
         return codigo;
@@ -31,11 +40,27 @@ public class Candidato {
         this.nome = nome;
     }
 
+    public String getPartido() {
+        return partido;
+    }
+
+    public void setPartido(String partido) {
+        this.partido = partido;
+    }
+
     public String getFotoUrl() {
         return fotoUrl;
     }
 
     public void setFotoUrl(String fotoUrl) {
         this.fotoUrl = fotoUrl;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 }

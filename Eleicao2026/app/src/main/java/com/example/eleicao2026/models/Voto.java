@@ -24,11 +24,6 @@ public class Voto {
     @ColumnInfo(name = "vot_tipoPesquisa")
     private String tipoPesquisa;
 
-    @ColumnInfo(name = "vot_latitude")
-    private Double latitude;
-
-    @ColumnInfo(name = "vot_longitude")
-    private Double longitude;
 
     public int getCodigo() {
         return codigo;
@@ -62,19 +57,5 @@ public class Voto {
         this.tipoPesquisa = tipoPesquisa;
     }
 
-    public Double getLatitude() {
-        return latitude;
-    }
 
-    public void setLatitude(Double latitude) {
-        this.latitude = latitude;
-    }
-
-    public Double getLongitude() {
-        return longitude;
-    }
-
-    public void setLongitude(Double longitude) {
-        this.longitude = longitude;
-    }
 }

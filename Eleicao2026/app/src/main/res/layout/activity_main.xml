@@ -31,39 +31,27 @@
         app:srcCompat="@drawable/eleicoes" />
 
     <Button
-        android:id="@+id/btPesEst"
+        android:id="@+id/btPes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="68dp"
         android:backgroundTint="#0D0C0C"
-        android:text="Pesquisa Estimulada"
+        android:text="Iniciar Pesquisa"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <Button
-        android:id="@+id/btPesEsp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:backgroundTint="#0D0C0C"
-        android:text="Pesquisa Espontânea"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btPesEst" />
-
-    <Button
         android:id="@+id/btFinalizar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="20dp"
         android:backgroundTint="#0D0C0C"
         android:text="Finalizar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btPesEsp" />
+        app:layout_constraintTop_toBottomOf="@+id/btPes" />
 
     <ImageView
         android:id="@+id/imageView7"

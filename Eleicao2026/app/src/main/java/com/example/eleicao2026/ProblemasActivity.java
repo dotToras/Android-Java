@@ -1,6 +1,9 @@
 package com.example.eleicao2026;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,6 +13,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class ProblemasActivity extends AppCompatActivity {
 
+    Button btConfProb;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,5 +24,17 @@ public class ProblemasActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        btConfProb = findViewById(R.id.btConfProb);
+
+        btConfProb.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(ProblemasActivity.this, DadosEntrevistadoActivity.class);
+                startActivity(i);
+                finishAndRemoveTask();
+            }
+        });
+
     }
 }

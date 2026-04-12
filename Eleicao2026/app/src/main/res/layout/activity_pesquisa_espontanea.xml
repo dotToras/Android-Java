@@ -38,7 +38,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.52"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button4"
+        app:layout_constraintTop_toBottomOf="@+id/btConfEsp"
         app:layout_constraintVertical_bias="0.92"
         app:srcCompat="@drawable/download" />
 
@@ -54,7 +54,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView1243" />
 
     <EditText
-        android:id="@+id/editTextText2"
+        android:id="@+id/etNomeCandEsp"
         android:layout_width="267dp"
         android:layout_height="45dp"
         android:layout_marginTop="12dp"
@@ -67,7 +67,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/btConfEsp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
@@ -76,5 +76,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText2" />
+        app:layout_constraintTop_toBottomOf="@+id/etNomeCandEsp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

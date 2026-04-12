@@ -1,6 +1,7 @@
 package com.example.eleicao2026;
 
 import android.os.Bundle;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,7 +9,11 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.eleicao2026.database.AppDatabase;
+
 public class ResultadoPesquisaActivity extends AppCompatActivity {
+
+    TextView tvQtdEntr;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,5 +25,16 @@ public class ResultadoPesquisaActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        tvQtdEntr = findViewById(R.id.tvQtdEntr);
+        AppDatabase db = AppDatabase.getINSTANCE(this);
+
+        new Thread(() ->{
+            int qtdEntrevistados = db.entrevistadoDAO().totalEntrevistados();
+            runOnUiThread(()->{
+                tvQtdEntr.setText(String.valueOf(qtdEntrevistados));
+            });
+        }).start();
+
     }
 }

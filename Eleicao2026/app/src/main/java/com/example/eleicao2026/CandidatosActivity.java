@@ -1,6 +1,9 @@
 package com.example.eleicao2026;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,7 +11,11 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.eleicao2026.utils.SessaoPesquisa;
+
 public class CandidatosActivity extends AppCompatActivity {
+
+    Button btConfiEst;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,6 +26,21 @@ public class CandidatosActivity extends AppCompatActivity {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
+        });
+
+        btConfiEst = findViewById(R.id.btConfiEst);
+
+        btConfiEst.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+
+                // manda para a tela
+                Intent i = new Intent(CandidatosActivity.this, ProblemasActivity.class);
+                startActivity(i);
+                finishAndRemoveTask();
+            }
         });
     }
 }
