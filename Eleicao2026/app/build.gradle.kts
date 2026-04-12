@@ -38,6 +38,7 @@ dependencies {
 
     implementation("androidx.room:room-runtime:$room_version")
     annotationProcessor("androidx.room:room-compiler:$room_version")
+    implementation("com.google.android.gms:play-services-location:21.3.0")
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)
