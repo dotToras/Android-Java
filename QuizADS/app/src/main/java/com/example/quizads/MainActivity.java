@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 Global.prova = 1;
-                Intent i = new Intent(MainActivity.this, SqlActivity.class);
+                Intent i = new Intent(MainActivity.this, QuestaoActivity.class);
                 startActivity(i);
 
 
@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Global.prova = 2;
-                Intent i = new Intent(MainActivity.this, SqlActivity.class);
+                Intent i = new Intent(MainActivity.this, QuestaoActivity.class);
                 startActivity(i);
 
 
@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Global.prova = 3;
-                Intent i = new Intent(MainActivity.this, SqlActivity.class);
+                Intent i = new Intent(MainActivity.this, QuestaoActivity.class);
                 startActivity(i);
 
 

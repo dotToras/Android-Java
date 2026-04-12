@@ -12,16 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.QuizADS">
         <activity
-            android:name=".Resultado"
+            android:name=".ResultadoActivity"
             android:exported="false" />
         <activity
-            android:name=".SqlActivity"
-            android:exported="false" />
-        <activity
-            android:name=".SistemasOperacionaisActivity"
-            android:exported="false" />
-        <activity
-            android:name=".JavaActivity"
+            android:name=".QuestaoActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

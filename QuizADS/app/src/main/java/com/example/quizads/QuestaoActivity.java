@@ -1,16 +1,18 @@
 package com.example.quizads;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.ScrollView;
 import android.widget.TextView;
 import android.view.View;
 import android.widget.Toast;
-import android.content.Intent;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,13 +24,16 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class SqlActivity extends AppCompatActivity {
+public class QuestaoActivity extends AppCompatActivity {
 
 
 
     LinearLayout containerQuiz;
     Button btEnviar;
     List<Questao> listaQuestoes = new ArrayList<>();
+    TextView etNomeQuiz;
+    ImageView imgQuiz;
+
     int numb;
 
     @SuppressLint("SetTextI18n")
@@ -36,17 +41,26 @@ public class SqlActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_sql);
+        setContentView(R.layout.activity_questao);
 
+        etNomeQuiz = findViewById(R.id.etNomeQuiz);
+        imgQuiz = findViewById(R.id.imgQuiz);
 
         if( Global.prova == 1 ) {
             preencherQuestoesSO();
+	        etNomeQuiz.setText("Sistemas Operacionais");
+	        imgQuiz.setImageResource(R.drawable.os_logo);
+
         }
         else if ( Global.prova == 2 ) {
             preencherQuestoesJava();
+	        etNomeQuiz.setText("Java");
+	        imgQuiz.setImageResource(R.drawable.java_logo);
         }
         else if ( Global.prova == 3 ) {
             preencherQuestoesSQL();
+            etNomeQuiz.setText("SQL");
+	        imgQuiz.setImageResource(R.drawable.sql_logo);
         }
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
@@ -58,40 +72,46 @@ public class SqlActivity extends AppCompatActivity {
         btEnviar = findViewById(R.id.btEnviar);
         containerQuiz = findViewById(R.id.layout01);
 
+
         TextView tv = new TextView(this);
         // para as questões
-        for(int i = 0; i < listaQuestoes.size(); i++) {
-
+	    for(int i = 0; i < listaQuestoes.size(); i++) {
             Questao q = listaQuestoes.get(i);
 
             TextView tvPergunta = new TextView(this);
-            tvPergunta.setText(i + 1 + "-" + q.getQuestao());
+            tvPergunta.setText(i + 1 + ". " + q.getQuestao());
             tvPergunta.setTextSize(18);
+            tvPergunta.setTypeface(null, Typeface.BOLD);
+            tvPergunta.setPadding(0, 40, 0, 20);
+            tvPergunta.setTextColor(Color.BLACK);
 
             RadioGroup rg = new RadioGroup(this);
-            rg.addView(tvPergunta);
             rg.setOrientation(RadioGroup.VERTICAL);
+            rg.setPadding(0, 0, 0, 50);
 
-            // para as opções
+            containerQuiz.addView(tvPergunta);
+
             for (int j = 0; j < 4; j++) {
-                
                 RadioButton rbOpcoes = new RadioButton(this);
                 rbOpcoes.setText(q.getPerguntas().get(j));
                 rbOpcoes.setId(View.generateViewId());
-
+                rbOpcoes.setTextSize(16);
+                rbOpcoes.setPadding(10, 10, 10, 10);
+                
                 rg.addView(rbOpcoes);
             }
             containerQuiz.addView(rg);
-
         }
 
-        btEnviar.setOnClickListener(new View.OnClickListener() {
+	    btEnviar.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
 
                 int acertos = 0;
+                double pontuacao = 0;
                 int totalQuestoes = listaQuestoes.size();
+                int questaoAtualIndice = 0; 
 
                 // Percorre o container para verificar as respostas
                 for (int i = 0; i < containerQuiz.getChildCount(); i++) {
@@ -106,23 +126,29 @@ public class SqlActivity extends AppCompatActivity {
                         if (idSelecionado != -1) {
                             RadioButton rb = rg.findViewById(idSelecionado);
                             String respostaUsuario = rb.getText().toString();
-                            String respostaCerta = listaQuestoes.get(i).getRespostaCerta();
+                            
+                            
+                            String respostaCerta = listaQuestoes.get(questaoAtualIndice).getRespostaCerta();
 
                             if (respostaUsuario.equals(respostaCerta)) {
+                                pontuacao += 1; // se acerta ganha 1
                                 acertos++;
                             }
+                            else {
+                                pontuacao -= 0.20; // se erra perde 0.20
+                            }
                         }
+                        questaoAtualIndice++;
                     }
                 }
 
-                Toast.makeText(SqlActivity.this, "Você acertou " + acertos + " de " + totalQuestoes, Toast.LENGTH_LONG).show();
-                /* 
-                Intent intent = new Intent(SqlActivity.this, ResultadoActivity.class);
+                Intent intent = new Intent(QuestaoActivity.this, ResultadoActivity.class);
                 intent.putExtra("ACERTOS", acertos);
+                intent.putExtra("PONTUACAO", pontuacao);
                 intent.putExtra("TOTAL", totalQuestoes);
                 startActivity(intent);
                 finish(); 
-                */
+
             }
             
         });
