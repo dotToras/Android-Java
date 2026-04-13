@@ -9,7 +9,7 @@ import java.util.List;
 public class SessaoPesquisa {
     public static Voto votoEspontaneo = new Voto();
     public static Voto votoEstimulado = new Voto();
-    public static List<Problema> problemasMarcados = new ArrayList<>();
+    public static List<String> problemasMarcados = new ArrayList<>();
     
     public static void limpar() {
         votoEspontaneo = new Voto();

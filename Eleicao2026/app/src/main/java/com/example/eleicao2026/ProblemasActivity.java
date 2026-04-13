@@ -10,10 +10,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.eleicao2026.database.AppDatabase;
+import com.example.eleicao2026.models.Problema;
+
+import java.util.List;
 
 public class ProblemasActivity extends AppCompatActivity {
 
     Button btConfProb;
+    RecyclerView rvListaProb;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,6 +35,38 @@ public class ProblemasActivity extends AppCompatActivity {
         });
 
         btConfProb = findViewById(R.id.btConfProb);
+        rvListaProb = findViewById(R.id.rvListaProb);
+        rvListaProb.setLayoutManager(new LinearLayoutManager(this));
+        AppDatabase db = AppDatabase.getINSTANCE(this);
+
+
+
+        new Thread(()->{
+
+            // salvando os problemas
+            salvarProblema(db,"Saúde");
+            salvarProblema(db,"Educação");
+            salvarProblema(db,"Transporte");
+            salvarProblema(db,"Violência");
+            salvarProblema(db,"Fome");
+            salvarProblema(db,"Pobreza");
+            salvarProblema(db,"Trabalho");
+            salvarProblema(db,"Saneamento Básico");
+            salvarProblema(db,"Moradia");
+            salvarProblema(db,"Corrupção");
+
+
+            // buscando para popular a lista
+            List<Problema> listaProblemasDb = db.problemaDAO().buscarTodos();
+
+            runOnUiThread(()->{
+
+                ProblemaAdapter adapter = new ProblemaAdapter(listaProblemasDb);
+                rvListaProb.setAdapter(adapter);
+
+            });
+
+        }).start();
 
         btConfProb.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -36,5 +77,11 @@ public class ProblemasActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void salvarProblema(AppDatabase db, String nome) {
+        Problema p = new Problema();
+        p.setNome(nome);
+        db.problemaDAO().criar(p);
     }
 }

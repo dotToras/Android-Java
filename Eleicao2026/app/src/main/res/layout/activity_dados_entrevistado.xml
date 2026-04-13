@@ -119,7 +119,7 @@
         <TextView
             android:id="@+id/textView11"
             android:layout_width="344dp"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:fontFamily="@font/arimo_bold"
             android:text="ATENÇÃO: sua localização, data e hora da entrevista serão registradas"
             android:textAlignment="center"

@@ -49,11 +49,11 @@ public class CandidatosActivity extends AppCompatActivity {
             salvarCandidato(db, "Alexandre", "MACD", "alexandre", "Candidato", "#FFD700");
             salvarCandidato(db, "Gengis Khan", "MONG", "khan", "Candidato", "#8B0000");
             salvarCandidato(db, "Cleopatra", "EGIT", "cleopatra", "Candidato", "#008080");
-            salvarCandidato(db, "Golden Ship", "NAVI", "teste", "Candidato", "#DAA520");
+
     	    //  CAdastrando Opções especiais
-            salvarCandidato(db, "Branco", "", "branco", "Especial", null);
-            salvarCandidato(db, "Nulo", "", "nulo", "Especial", null);
-            salvarCandidato(db, "Não Sei", "", "naosei", "Especial", null);
+            salvarCandidato(db, "Branco", "", "branco", "Especial", "#FFFFFF");
+            salvarCandidato(db, "Nulo", "", "nulo", "Especial", "#FFFFFF");
+            salvarCandidato(db, "Não Sei", "", "naosei", "Especial", "#FFFFFF");
          
 
             // buscando os candidatos
@@ -87,9 +87,8 @@ public class CandidatosActivity extends AppCompatActivity {
     	c.setPartido(partido);
     	c.setFotoUrl(foto);
     	c.setTipo(tipo);
-        if(cor != null) {
-            c.setCorPartido(cor);
-        }
+        c.setCorPartido(cor);
+
     	db.candidatoDAO().criar(c);
     }
 }

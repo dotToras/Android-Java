@@ -26,7 +26,7 @@ public interface VotoDAO {
 
         // para cada codigo de problema na lista
         for(Integer codPro : codProblemas) {
-            inserirRelacao(new ProblemaVoto((int) votoId, (int) votoId)); // insere a relação com o voto
+            inserirRelacao(new ProblemaVoto((int) codPro, (int) votoId)); // insere a relação com o voto
         }
     }
     @Query("Select Count(*) From Voto where can_codigo = :candidatoId")

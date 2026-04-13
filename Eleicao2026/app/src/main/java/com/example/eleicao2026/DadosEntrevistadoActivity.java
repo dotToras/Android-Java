@@ -22,11 +22,15 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.eleicao2026.database.AppDatabase;
 import com.example.eleicao2026.models.Entrevistado;
+import com.example.eleicao2026.models.Problema;
 import com.example.eleicao2026.models.Voto;
 import com.example.eleicao2026.utils.SessaoPesquisa;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class DadosEntrevistadoActivity extends AppCompatActivity {
 
@@ -102,12 +106,26 @@ public class DadosEntrevistadoActivity extends AppCompatActivity {
                     vt.setNomeCitado(SessaoPesquisa.votoEspontaneo.getNomeCitado());
                     db.votoDAO().inserirVoto(vt);
 
-                    // Salvando Dados Pesquisa Estimulada
+                    // Salvando Dados Pesquisa Estimulada no Objeto
                     Voto vtEst = new Voto();
                     vtEst.setCandidato_codigo(SessaoPesquisa.votoEstimulado.getCandidato_codigo());
                     vtEst.setNomeCitado(SessaoPesquisa.votoEstimulado.getNomeCitado());
                     vtEst.setTipoPesquisa(SessaoPesquisa.votoEstimulado.getTipoPesquisa());
-                    db.votoDAO().inserirVoto(vtEst);
+
+
+                    // Salvando Problemas escolhidos
+                    List<Integer> idsProblemas = new ArrayList<>();
+                    Problema p = new Problema();
+
+                    // salva cada problema na lista
+                    for(String problemaNome : SessaoPesquisa.problemasMarcados) {
+                        int id = db.problemaDAO().buscarIdPeloNome(problemaNome);
+                        idsProblemas.add(id);
+                    }
+
+                    // salva o voto estimulado junto dos problemas relacionados
+                    db.votoDAO().salvarVoto(vtEst, idsProblemas);
+
 
                     // para continuar somente apos terminar a thread
                     runOnUiThread(()-> {

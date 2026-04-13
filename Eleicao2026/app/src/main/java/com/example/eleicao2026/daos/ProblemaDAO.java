@@ -2,6 +2,7 @@ package com.example.eleicao2026.daos;
 
 import androidx.room.Dao;
 import androidx.room.Insert;
+import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Update;
 
@@ -14,7 +15,9 @@ public interface ProblemaDAO {
     @Query("Select * From Problema")
     List<Problema> buscarTodos();
 
-    @Insert
+    @Query("SELECT pro_codigo FROM Problema WHERE pro_nome = :nome")
+    int buscarIdPeloNome(String nome);
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     void criar(Problema problema);
 
     @Update

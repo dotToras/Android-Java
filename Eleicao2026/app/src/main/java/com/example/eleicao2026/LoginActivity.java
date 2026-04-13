@@ -42,7 +42,8 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-
+                String nomeDigitado = edUsuario.getText().toString().trim();
+                String senhaDigitada = edSenha.getText().toString().trim();
 
                 new Thread(() -> {
 
@@ -54,12 +55,12 @@ public class LoginActivity extends AppCompatActivity {
                         db.usuarioDAO().criar(admin);
 
                         Usuario entrevistador = new Usuario();
-                        entrevistador.setNome("Mario");
+                        entrevistador.setNome("Teste");
                         entrevistador.setSenha("123");
                         entrevistador.setTipo("entrevistador");
                         db.usuarioDAO().criar(entrevistador);
                     }
-                    Usuario usuarioLogado = db.usuarioDAO().fazerLogin(edUsuario.getText().toString(), edSenha.getText().toString());
+                    Usuario usuarioLogado = db.usuarioDAO().fazerLogin(nomeDigitado, senhaDigitada);
 
                     // usado quando queremos mostrar imagens na tela
                     runOnUiThread(() -> {
