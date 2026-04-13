@@ -2,6 +2,7 @@ package com.example.eleicao2026.daos;
 
 import com.example.eleicao2026.models.Candidato;
 import androidx.room.Dao;
+import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Insert;
 import androidx.room.Delete;
@@ -15,7 +16,7 @@ public interface CandidatoDAO {
     @Query("Select * from Candidato")
     List<Candidato> buscarTodos();
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     void criar(Candidato candidato);
 
     @Update

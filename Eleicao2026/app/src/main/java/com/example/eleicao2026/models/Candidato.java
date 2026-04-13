@@ -2,9 +2,10 @@ package com.example.eleicao2026.models;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
-@Entity
+@Entity(indices = {@Index(value = {"can_nome"}, unique = true)})
 public class Candidato {
 
     @PrimaryKey(autoGenerate = true)

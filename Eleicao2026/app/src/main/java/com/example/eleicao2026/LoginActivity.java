@@ -36,21 +36,7 @@ public class LoginActivity extends AppCompatActivity {
 
         AppDatabase db = AppDatabase.getINSTANCE(this);
 
-        new Thread(() -> {
-            if(db.usuarioDAO().buscarTotalUsuarios() == 0) {
-                Usuario admin = new Usuario();
-                admin.setNome("admin");
-                admin.setSenha("123");
-                admin.setTipo("admin");
-                db.usuarioDAO().criar(admin);
 
-                Usuario entrevistador = new Usuario();
-                entrevistador.setNome("Mario");
-                entrevistador.setSenha("123");
-                entrevistador.setTipo("entrevistador");
-                db.usuarioDAO().criar(entrevistador);
-            }
-        }).start();
 
         btEntrar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,6 +45,20 @@ public class LoginActivity extends AppCompatActivity {
 
 
                 new Thread(() -> {
+
+                    if(db.usuarioDAO().buscarTotalUsuarios() == 0) {
+                        Usuario admin = new Usuario();
+                        admin.setNome("admin");
+                        admin.setSenha("123");
+                        admin.setTipo("admin");
+                        db.usuarioDAO().criar(admin);
+
+                        Usuario entrevistador = new Usuario();
+                        entrevistador.setNome("Mario");
+                        entrevistador.setSenha("123");
+                        entrevistador.setTipo("entrevistador");
+                        db.usuarioDAO().criar(entrevistador);
+                    }
                     Usuario usuarioLogado = db.usuarioDAO().fazerLogin(edUsuario.getText().toString(), edSenha.getText().toString());
 
                     // usado quando queremos mostrar imagens na tela

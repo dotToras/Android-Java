@@ -18,7 +18,7 @@ import com.example.eleicao2026.models.ProblemaVoto;
 import com.example.eleicao2026.models.Usuario;
 import com.example.eleicao2026.models.Voto;
 
-@Database(entities = { Usuario.class, Candidato.class, Entrevistado.class, Voto.class, Problema.class, ProblemaVoto.class }, version = 1)
+@Database(entities = { Usuario.class, Candidato.class, Entrevistado.class, Voto.class, Problema.class, ProblemaVoto.class }, version = 2)
 public abstract class AppDatabase extends RoomDatabase {
 
     // Instancia
