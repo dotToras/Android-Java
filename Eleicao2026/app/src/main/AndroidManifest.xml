@@ -15,6 +15,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Eleicao2026">
         <activity
+            android:name=".GraficoActivity"
+            android:exported="false" />
+        <activity
             android:name=".ListaEntrevistadosActivity"
             android:exported="false" />
         <activity

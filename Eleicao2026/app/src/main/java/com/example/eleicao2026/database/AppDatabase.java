@@ -7,6 +7,7 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
 import com.example.eleicao2026.daos.CandidatoDAO;
+import com.example.eleicao2026.daos.CandidatoVotoDAO;
 import com.example.eleicao2026.daos.EntrevistadoDAO;
 import com.example.eleicao2026.daos.ProblemaDAO;
 import com.example.eleicao2026.daos.UsuarioDAO;
@@ -18,7 +19,7 @@ import com.example.eleicao2026.models.ProblemaVoto;
 import com.example.eleicao2026.models.Usuario;
 import com.example.eleicao2026.models.Voto;
 
-@Database(entities = { Usuario.class, Candidato.class, Entrevistado.class, Voto.class, Problema.class, ProblemaVoto.class }, version = 6)
+@Database(entities = { Usuario.class, Candidato.class, Entrevistado.class, Voto.class, Problema.class, ProblemaVoto.class }, version = 7)
 public abstract class AppDatabase extends RoomDatabase {
 
     // Instancia
@@ -32,6 +33,7 @@ public abstract class AppDatabase extends RoomDatabase {
     public abstract ProblemaDAO problemaDAO();
     public abstract VotoDAO votoDAO();
     public abstract EntrevistadoDAO entrevistadoDAO();
+    public abstract CandidatoVotoDAO candidatoVotoDAO();
 
     // Singleton, é importante aqui para que só seja possível instanciar a classe uma única vez no APP
     // evitando uso excessivo de memória

@@ -17,7 +17,7 @@ import com.example.eleicao2026.database.AppDatabase;
 public class ResultadoPesquisaActivity extends AppCompatActivity {
 
     TextView tvQtdEntr;
-    Button btResultadoPes;
+    Button btResultadoPes, btEleitoresPes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +33,9 @@ public class ResultadoPesquisaActivity extends AppCompatActivity {
         tvQtdEntr = findViewById(R.id.tvQtdEntr);
         AppDatabase db = AppDatabase.getINSTANCE(this);
         btResultadoPes = findViewById(R.id.btResultadoPes);
+        btEleitoresPes = findViewById(R.id.btEleitoresPes);
 
+        // selecionando total de entrevistados
         new Thread(() ->{
             int qtdEntrevistados = db.entrevistadoDAO().totalEntrevistados();
             runOnUiThread(()->{
@@ -42,6 +44,15 @@ public class ResultadoPesquisaActivity extends AppCompatActivity {
         }).start();
 
         btResultadoPes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(ResultadoPesquisaActivity.this, GraficoActivity.class);
+                startActivity(i);
+                finish();
+            }
+        });
+
+        btEleitoresPes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(ResultadoPesquisaActivity.this, ListaEntrevistadosActivity.class);

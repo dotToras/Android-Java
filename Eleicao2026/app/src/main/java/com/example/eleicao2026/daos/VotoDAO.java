@@ -29,6 +29,11 @@ public interface VotoDAO {
             inserirRelacao(new ProblemaVoto((int) codPro, (int) votoId)); // insere a relação com o voto
         }
     }
+
+    @Query("Select Count(*) from Voto where vot_tipoPesquisa = 'ESTIMULADA'")
+    int buscarTotalVotos();
+
+    // Acabei criando mas nao vou usar no momento, vou usar um que pega de todos
     @Query("Select Count(*) From Voto where can_codigo = :candidatoId")
     int buscarTotalVotosCandidato(int candidatoId);
 

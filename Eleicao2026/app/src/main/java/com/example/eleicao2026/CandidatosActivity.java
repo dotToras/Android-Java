@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -69,12 +70,17 @@ public class CandidatosActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-
-
-                // manda para a tela
-                Intent i = new Intent(CandidatosActivity.this, ProblemasActivity.class);
-                startActivity(i);
-                finishAndRemoveTask();
+                // Verifica se selecionou um candidato antes de continuar para a proxima tela
+                if (SessaoPesquisa.votoEstimulado == null) {
+                    Toast t = Toast.makeText(CandidatosActivity.this, "escolha uma opção de voto", Toast.LENGTH_SHORT);
+                    t.show();
+                }
+                else {
+                    // manda para a tela
+                    Intent i = new Intent(CandidatosActivity.this, ProblemasActivity.class);
+                    startActivity(i);
+                    finishAndRemoveTask();
+                }
             }
         });
 

@@ -17,6 +17,7 @@ public class Candidato {
 
     @ColumnInfo(name = "can_partido")
     private String partido;
+
     @ColumnInfo(name = "can_partidoCor")
     private String corPartido;
 
