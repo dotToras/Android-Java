@@ -16,7 +16,7 @@ public class Voto {
     @ColumnInfo(name = "vot_codigo")
     private int codigo;
     @ColumnInfo(name = "can_codigo")
-    private Integer candidato_id; // aqui eh um Integer porque pode ser nulo, int nao aceita
+    private Integer candidato_codigo; // aqui eh um Integer porque pode ser nulo, int nao aceita
 
     @ColumnInfo(name = "vot_nomeCitado")
     private String nomeCitado;
@@ -33,12 +33,12 @@ public class Voto {
         this.codigo = codigo;
     }
 
-    public Integer getCandidato_id() {
-        return candidato_id;
+    public Integer getCandidato_codigo() {
+        return candidato_codigo;
     }
 
-    public void setCandidato_id(Integer candidato_id) {
-        this.candidato_id = candidato_id;
+    public void setCandidato_codigo(Integer candidato_codigo) {
+        this.candidato_codigo = candidato_codigo;
     }
 
     public String getNomeCitado() {

@@ -22,6 +22,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.eleicao2026.database.AppDatabase;
 import com.example.eleicao2026.models.Entrevistado;
+import com.example.eleicao2026.models.Voto;
 import com.example.eleicao2026.utils.SessaoPesquisa;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
@@ -83,9 +84,9 @@ public class DadosEntrevistadoActivity extends AppCompatActivity {
                 // desativa o botão enquanto ocorre o salvamento
                 btConfDados.setEnabled(false);
 
-                // Salvando Dados do Entrevistado
                 new Thread(() -> {
 
+                    // Salvando Dados do Entrevistado
                     Entrevistado ev = new Entrevistado();
                     ev.setNome(etNomeEntr.getText().toString());
                     ev.setCelular(etCelEntr.getText().toString());
@@ -94,7 +95,19 @@ public class DadosEntrevistadoActivity extends AppCompatActivity {
                     ev.setLongitude(longitude);
                     db.entrevistadoDAO().criar(ev);
 
+                    // Salvando Dados Pesquisa Espontanea
+                    Voto vt = new Voto();
+                    vt.setCandidato_codigo(null);
+                    vt.setTipoPesquisa(SessaoPesquisa.votoEspontaneo.getTipoPesquisa());
+                    vt.setNomeCitado(SessaoPesquisa.votoEspontaneo.getNomeCitado());
+                    db.votoDAO().inserirVoto(vt);
 
+                    // Salvando Dados Pesquisa Estimulada
+                    Voto vtEst = new Voto();
+                    vtEst.setCandidato_codigo(SessaoPesquisa.votoEstimulado.getCandidato_codigo());
+                    vtEst.setNomeCitado(SessaoPesquisa.votoEstimulado.getNomeCitado());
+                    vtEst.setTipoPesquisa(SessaoPesquisa.votoEstimulado.getTipoPesquisa());
+                    db.votoDAO().inserirVoto(vtEst);
 
                     // para continuar somente apos terminar a thread
                     runOnUiThread(()-> {

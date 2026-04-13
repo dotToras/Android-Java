@@ -17,11 +17,13 @@ public class Candidato {
 
     @ColumnInfo(name = "can_partido")
     private String partido;
+    @ColumnInfo(name = "can_partidoCor")
+    private String corPartido;
 
     @ColumnInfo(name = "can_fotoUrl")
-    private String fotoUrl; // null para BRANCO, NULO e NAO_SEI
+    private String fotoUrl;
 
-    // "CANDIDATO", "BRANCO", "NULO", "NAO_SEI"
+    // "CANDIDATO", "ESPECIAL"
     @ColumnInfo(name = "can_tipo")
     private String tipo;
 
@@ -63,5 +65,13 @@ public class Candidato {
 
     public void setTipo(String tipo) {
         this.tipo = tipo;
+    }
+
+    public String getCorPartido() {
+        return corPartido;
+    }
+
+    public void setCorPartido(String corPartido) {
+        this.corPartido = corPartido;
     }
 }

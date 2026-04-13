@@ -43,15 +43,18 @@ public class CandidatosActivity extends AppCompatActivity {
 
         new Thread(()->{
 
-            // inserindo os candidatos
-            Candidato c = new Candidato();
-
-            c.setNome("Ea-Nasir");
-            c.setPartido("SUMR");
-            c.setFotoUrl("gq79pkhxkaa4a5e");
-            c.setTipo("Candidato");
-
-            db.candidatoDAO().criar(c);
+   	        //  Cadastrando Candidatos
+            salvarCandidato(db, "Ea-Nasir", "SUMR", "gq79pkhxkaa4a5e", "Candidato", "#CD7F32");
+            salvarCandidato(db, "Ciro II", "PERS", "cyrus", "Candidato", "#4682B4");
+            salvarCandidato(db, "Alexandre", "MACD", "alexandre", "Candidato", "#FFD700");
+            salvarCandidato(db, "Gengis Khan", "MONG", "khan", "Candidato", "#8B0000");
+            salvarCandidato(db, "Cleopatra", "EGIT", "cleopatra", "Candidato", "#008080");
+            salvarCandidato(db, "Golden Ship", "NAVI", "teste", "Candidato", "#DAA520");
+    	    //  CAdastrando Opções especiais
+            salvarCandidato(db, "Branco", "", "branco", "Especial", null);
+            salvarCandidato(db, "Nulo", "", "nulo", "Especial", null);
+            salvarCandidato(db, "Não Sei", "", "naosei", "Especial", null);
+         
 
             // buscando os candidatos
             List<Candidato> listaCandidatosDb = db.candidatoDAO().buscarTodos();
@@ -74,5 +77,19 @@ public class CandidatosActivity extends AppCompatActivity {
                 finishAndRemoveTask();
             }
         });
+
+
+    }
+
+	private void salvarCandidato(AppDatabase db, String nome, String partido, String foto, String tipo, String cor) {
+    	Candidato c = new Candidato();
+    	c.setNome(nome);
+    	c.setPartido(partido);
+    	c.setFotoUrl(foto);
+    	c.setTipo(tipo);
+        if(cor != null) {
+            c.setCorPartido(cor);
+        }
+    	db.candidatoDAO().criar(c);
     }
 }
