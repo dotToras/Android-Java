@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.eleicao2026.database.AppDatabase;
 import com.example.eleicao2026.models.Problema;
+import com.example.eleicao2026.utils.SessaoPesquisa;
 
 import java.util.List;
 
@@ -71,9 +73,16 @@ public class ProblemasActivity extends AppCompatActivity {
         btConfProb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(ProblemasActivity.this, DadosEntrevistadoActivity.class);
-                startActivity(i);
-                finishAndRemoveTask();
+
+                if(SessaoPesquisa.problemasMarcados == null || SessaoPesquisa.problemasMarcados.isEmpty()) {
+                    Toast t = Toast.makeText(ProblemasActivity.this, "Escolha ao menos 1 problema", Toast.LENGTH_SHORT);
+                    t.show();
+                }
+                else {
+                    Intent i = new Intent(ProblemasActivity.this, DadosEntrevistadoActivity.class);
+                    startActivity(i);
+                    finish();
+                }
             }
         });
 

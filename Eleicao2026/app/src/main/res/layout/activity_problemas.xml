@@ -12,34 +12,48 @@
         android:layout_width="wrap_content"
         android:layout_height="30dp"
         android:layout_marginTop="16dp"
-        android:textSize="24sp"
         android:fontFamily="@font/arimo_bold"
         android:text="Principais Problemas"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvListaProb"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="85dp"
+        android:layout_width="404dp"
+        android:layout_height="569dp"
         app:layout_constraintBottom_toTopOf="@+id/btConfProb"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5"/>
+        app:layout_constraintTop_toBottomOf="@+id/textView5"
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/btConfProb"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="4dp"
         android:backgroundTint="#0D0C0C"
         android:text="Confirmar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView18"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="23dp"
+        android:layout_marginBottom="5dp"
+        android:text="Na sua opinião, quais são os desafios mais urgentes para o futuro do nosso país? Selecione até 3:"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/rvListaProb"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

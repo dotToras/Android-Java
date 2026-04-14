@@ -22,7 +22,7 @@
     <EditText
         android:id="@+id/etNomeEntr"
         android:layout_width="267dp"
-        android:layout_height="42dp"
+        android:layout_height="48dp"
         android:layout_marginTop="24dp"
         android:ems="10"
         android:hint="João Silva"
@@ -87,10 +87,10 @@
     <EditText
         android:id="@+id/etCelEntr"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:layout_marginTop="4dp"
         android:ems="10"
-        android:hint="(99) 99999-9999"
+        android:hint="99 99999-9999"
         android:inputType="phone"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
@@ -100,7 +100,7 @@
 
     <LinearLayout
         android:id="@+id/linearLayout2"
-        android:layout_width="429dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="36dp"
         android:orientation="horizontal"
@@ -132,7 +132,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:fontFamily="@font/arimo_bold"
-        android:text="REGISTRADOS"
+        android:textAlignment="center"
+        android:text="REGISTRADOS, se preferir não se identificar, utilize o botão 'Finalizar'"
         android:textColor="#BD0323"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"

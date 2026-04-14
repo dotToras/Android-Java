@@ -75,7 +75,7 @@ public class DadosEntrevistadoActivity extends AppCompatActivity {
         btFinalizarPes = findViewById(R.id.btFinalizarPes);
         etCelEntr = findViewById(R.id.etCelEntr);
         etNomeEntr = findViewById(R.id.etNomeEntr);
-        AppDatabase db = AppDatabase.getINSTANCE(this);
+
         // instancia do flpc
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
@@ -85,64 +85,92 @@ public class DadosEntrevistadoActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                // desativa o botão enquanto ocorre o salvamento
-                btConfDados.setEnabled(false);
-
-                new Thread(() -> {
-
-                    // Salvando Dados do Entrevistado
-                    Entrevistado ev = new Entrevistado();
-                    ev.setNome(etNomeEntr.getText().toString());
-                    ev.setCelular(etCelEntr.getText().toString());
-                    ev.setDataHora(System.currentTimeMillis());
-                    ev.setLatitude(latitude);
-                    ev.setLongitude(longitude);
-                    db.entrevistadoDAO().criar(ev);
-
-                    // Salvando Dados Pesquisa Espontanea
-                    Voto vt = new Voto();
-                    vt.setCandidato_codigo(null);
-                    vt.setTipoPesquisa(SessaoPesquisa.votoEspontaneo.getTipoPesquisa());
-                    vt.setNomeCitado(SessaoPesquisa.votoEspontaneo.getNomeCitado());
-                    db.votoDAO().inserirVoto(vt);
-
-                    // Salvando Dados Pesquisa Estimulada no Objeto
-                    Voto vtEst = new Voto();
-                    vtEst.setCandidato_codigo(SessaoPesquisa.votoEstimulado.getCandidato_codigo());
-                    vtEst.setNomeCitado(SessaoPesquisa.votoEstimulado.getNomeCitado());
-                    vtEst.setTipoPesquisa(SessaoPesquisa.votoEstimulado.getTipoPesquisa());
-
-
-                    // Salvando Problemas escolhidos
-                    List<Integer> idsProblemas = new ArrayList<>();
-                    Problema p = new Problema();
-
-                    // salva cada problema na lista
-                    for(String problemaNome : SessaoPesquisa.problemasMarcados) {
-                        int id = db.problemaDAO().buscarIdPeloNome(problemaNome);
-                        idsProblemas.add(id);
-                    }
-
-                    // salva o voto estimulado junto dos problemas relacionados
-                    db.votoDAO().salvarVoto(vtEst, idsProblemas);
-
-
-                    // para continuar somente apos terminar a thread
-                    runOnUiThread(()-> {
-
-                        // limpa a sessao
-                        SessaoPesquisa.limpar();
-
-                        // mandar para otura tela
-                        Intent i = new Intent(DadosEntrevistadoActivity.this, MainActivity.class);
-                        startActivity(i);
-                        finishAndRemoveTask();
-                    });
-                }).start();
+                // Verificando se preencheu os campos
+                if(etCelEntr.getText().toString().isEmpty() || etNomeEntr.getText().toString().isEmpty()) {
+                    Toast.makeText(DadosEntrevistadoActivity.this, "Preencha todos os campos ou salve Anonimamente", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    salvarDados(false);
+                }
             }
         });
+
+        btFinalizarPes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                salvarDados(true);
+            }
+        });
+
     }
 
+    // reutilizar nos dois botoes
+    void salvarDados(boolean ehAnonimo) {
+        // desativa o botão enquanto ocorre o salvamento (evitar clicar nos dois seguido)
+        btConfDados.setEnabled(false);
+        btFinalizarPes.setEnabled(false);
+
+        new Thread(() -> {
+
+            AppDatabase db = AppDatabase.getINSTANCE(this);
+
+            // Salvando Dados do Entrevistado
+            Entrevistado ev = new Entrevistado();
+            if(ehAnonimo) {
+                ev.setNome("Anônimo");
+                ev.setCelular("Anônimo");
+            }
+            else {
+                ev.setNome(etNomeEntr.getText().toString());
+                ev.setCelular(etCelEntr.getText().toString());
+            }
+            ev.setDataHora(System.currentTimeMillis());
+            ev.setLatitude(latitude);
+            ev.setLongitude(longitude);
+            db.entrevistadoDAO().criar(ev);
+
+            // Salvando Dados Pesquisa Espontanea
+            Voto vt = new Voto();
+            vt.setCandidato_codigo(null);
+            vt.setTipoPesquisa(SessaoPesquisa.votoEspontaneo.getTipoPesquisa());
+            vt.setNomeCitado(SessaoPesquisa.votoEspontaneo.getNomeCitado());
+            db.votoDAO().inserirVoto(vt);
+
+            // Salvando Dados Pesquisa Estimulada no Objeto
+            Voto vtEst = new Voto();
+            vtEst.setCandidato_codigo(SessaoPesquisa.votoEstimulado.getCandidato_codigo());
+            vtEst.setNomeCitado(SessaoPesquisa.votoEstimulado.getNomeCitado());
+            vtEst.setTipoPesquisa(SessaoPesquisa.votoEstimulado.getTipoPesquisa());
+
+
+            // Salvando Problemas escolhidos
+            List<Integer> idsProblemas = new ArrayList<>();
+            Problema p = new Problema();
+
+            // salva cada problema na lista
+            for(String problemaNome : SessaoPesquisa.problemasMarcados) {
+                int id = db.problemaDAO().buscarIdPeloNome(problemaNome);
+                idsProblemas.add(id);
+            }
+
+            // salva o voto estimulado junto dos problemas relacionados
+            db.votoDAO().salvarVoto(vtEst, idsProblemas);
+
+
+            // para continuar somente apos terminar a thread
+            runOnUiThread(()-> {
+
+                // limpa a sessao
+                SessaoPesquisa.limpar();
+                Toast.makeText(this, "Pesquisa salva com sucesso", Toast.LENGTH_SHORT).show();
+
+                // mandar para otura tela
+                Intent i = new Intent(DadosEntrevistadoActivity.this, MainActivity.class);
+                startActivity(i);
+                finish();
+            });
+        }).start();
+    }
     void pegarLocalizacaoAtual() {
 
 
@@ -179,6 +207,8 @@ public class DadosEntrevistadoActivity extends AppCompatActivity {
     }
 }
 
+
+// caso eu precise trabalhar com localização dnv:
 // documentação usada para a localizacao (já no passo-a-passo que fiz):
 // Aidicionar no Manifest: https://developer.android.com/develop/sensors-and-location/location/permissions?hl=pt-br
 // Fused Location Provider e pegar a última localização: https://developer.android.com/develop/sensors-and-location/location/retrieve-current?hl=pt-br

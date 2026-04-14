@@ -13,7 +13,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button btPes;
+    Button btPes, btFinalizar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,12 +29,23 @@ public class MainActivity extends AppCompatActivity {
         });
 
         btPes = findViewById(R.id.btPes);
+        btFinalizar = findViewById(R.id.btFinalizar);
+
+        btFinalizar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, LoginActivity.class);
+                startActivity(i);
+                finish();
+            }
+        });
 
         btPes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(MainActivity.this, PesquisaEspontaneaActivity.class);
                 startActivity(i);
+                finish();
 
             }
         });

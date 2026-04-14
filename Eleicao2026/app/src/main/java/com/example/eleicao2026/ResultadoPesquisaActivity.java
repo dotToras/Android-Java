@@ -17,7 +17,7 @@ import com.example.eleicao2026.database.AppDatabase;
 public class ResultadoPesquisaActivity extends AppCompatActivity {
 
     TextView tvQtdEntr;
-    Button btResultadoPes, btEleitoresPes;
+    Button btResultadoPes, btEleitoresPes, btFinalizarRes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +34,7 @@ public class ResultadoPesquisaActivity extends AppCompatActivity {
         AppDatabase db = AppDatabase.getINSTANCE(this);
         btResultadoPes = findViewById(R.id.btResultadoPes);
         btEleitoresPes = findViewById(R.id.btEleitoresPes);
+        btFinalizarRes = findViewById(R.id.btFinalizarRes);
 
         // selecionando total de entrevistados
         new Thread(() ->{
@@ -48,7 +49,7 @@ public class ResultadoPesquisaActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(ResultadoPesquisaActivity.this, GraficoActivity.class);
                 startActivity(i);
-                finish();
+
             }
         });
 
@@ -56,6 +57,15 @@ public class ResultadoPesquisaActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(ResultadoPesquisaActivity.this, ListaEntrevistadosActivity.class);
+                startActivity(i);
+
+            }
+        });
+
+        btFinalizarRes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(ResultadoPesquisaActivity.this, LoginActivity.class);
                 startActivity(i);
                 finish();
             }

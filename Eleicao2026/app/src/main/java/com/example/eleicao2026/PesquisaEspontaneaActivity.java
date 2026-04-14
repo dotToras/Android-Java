@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -38,14 +39,24 @@ public class PesquisaEspontaneaActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                // salva na lista
-                SessaoPesquisa.votoEspontaneo.setNomeCitado(etNomeCandEsp.getText().toString());
-                SessaoPesquisa.votoEspontaneo.setTipoPesquisa("ESPONTANEA");
 
-                // manda para a proxima tela
-                Intent i = new Intent(PesquisaEspontaneaActivity.this, CandidatosActivity.class);
-                startActivity(i);
-                finishAndRemoveTask();
+
+                // verifica se escolheu alguem para votar
+                if(etNomeCandEsp.getText().toString().isBlank()) {
+                    Toast t = Toast.makeText(PesquisaEspontaneaActivity.this, "O campo não pode estar vazio", Toast.LENGTH_SHORT);
+                    t.show();
+                }
+                else {
+
+                    // salva na lista
+                    SessaoPesquisa.votoEspontaneo.setNomeCitado(etNomeCandEsp.getText().toString());
+                    SessaoPesquisa.votoEspontaneo.setTipoPesquisa("ESPONTANEA");
+
+                    // manda para a proxima tela
+                    Intent i = new Intent(PesquisaEspontaneaActivity.this, CandidatosActivity.class);
+                    startActivity(i);
+                    finish();
+                }
             }
         });
 

@@ -31,7 +31,7 @@
     <EditText
         android:id="@+id/edUsuario"
         android:layout_width="318dp"
-        android:layout_height="39dp"
+        android:layout_height="48dp"
         android:layout_marginTop="12dp"
         android:ems="10"
         android:hint="Digite seu Usuário"
@@ -69,7 +69,7 @@
     <EditText
         android:id="@+id/edSenha"
         android:layout_width="318dp"
-        android:layout_height="39dp"
+        android:layout_height="48dp"
         android:ems="10"
         android:inputType="textPassword"
         android:hint="Digite sua Senha"

@@ -52,9 +52,9 @@ public class CandidatosActivity extends AppCompatActivity {
             salvarCandidato(db, "Cleopatra", "EGIT", "cleopatra", "Candidato", "#008080");
 
     	    //  CAdastrando Opções especiais
-            salvarCandidato(db, "Branco", "", "branco", "Especial", "#FFFFFF");
-            salvarCandidato(db, "Nulo", "", "nulo", "Especial", "#FFFFFF");
-            salvarCandidato(db, "Não Sei", "", "naosei", "Especial", "#FFFFFF");
+            salvarCandidato(db, "Branco", "", "branco", "Especial", "#F5F5F5");
+            salvarCandidato(db, "Nulo", "", "nulo", "Especial", "#E53935");
+            salvarCandidato(db, "Não Sei", "", "naosei", "Especial", "#FFB300");
          
 
             // buscando os candidatos
@@ -71,15 +71,15 @@ public class CandidatosActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 // Verifica se selecionou um candidato antes de continuar para a proxima tela
-                if (SessaoPesquisa.votoEstimulado == null) {
-                    Toast t = Toast.makeText(CandidatosActivity.this, "escolha uma opção de voto", Toast.LENGTH_SHORT);
+                if (SessaoPesquisa.votoEstimulado == null || SessaoPesquisa.votoEstimulado.getCandidato_codigo() == null) {
+                    Toast t = Toast.makeText(CandidatosActivity.this, "Escolha uma opção de voto", Toast.LENGTH_SHORT);
                     t.show();
                 }
                 else {
                     // manda para a tela
                     Intent i = new Intent(CandidatosActivity.this, ProblemasActivity.class);
                     startActivity(i);
-                    finishAndRemoveTask();
+                    finish();
                 }
             }
         });

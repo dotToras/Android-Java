@@ -36,14 +36,17 @@ public class LoginActivity extends AppCompatActivity {
 
         AppDatabase db = AppDatabase.getINSTANCE(this);
 
-
-
         btEntrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 String nomeDigitado = edUsuario.getText().toString().trim();
                 String senhaDigitada = edSenha.getText().toString().trim();
+
+                if(nomeDigitado.isEmpty() || senhaDigitada.isEmpty()) {
+                    Toast.makeText(LoginActivity.this, "Preencha todos os campos", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
                 new Thread(() -> {
 
@@ -100,3 +103,4 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 }
+
